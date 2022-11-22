@@ -1,0 +1,8 @@
+{{old_models}}
+from .{{model_snake}} import (
+    {{model_camel}},
+    {{model_camel}}Create,
+    {{model_camel}}PrivateRead,
+    {{model_camel}}PublicRead,
+    {{model_camel}}Update,
+)

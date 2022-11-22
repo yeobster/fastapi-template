@@ -1,0 +1,2 @@
+{{old_crud}}
+from .{{model_snake}} import {{model_snake}}

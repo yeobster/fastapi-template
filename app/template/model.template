@@ -1,0 +1,47 @@
+# user defined
+from models.base import ModelBase
+
+
+### models ###
+
+
+class {{model_camel}}Base(ModelBase):
+    pass
+
+
+class {{model_camel}}Create({{model_camel}}Base):
+    """생성 객체"""
+
+    pass
+
+
+class {{model_camel}}Update({{model_camel}}Base):
+    """업데이트 객첵"""
+
+    pass
+
+
+class {{model_camel}}PublicRead({{model_camel}}Base):
+    """공개 정보"""
+
+    id: int
+
+
+class {{model_camel}}PrivateRead(
+    {{model_camel}}PublicRead
+):
+    """비공개 정보"""
+    pass
+
+
+# 주의: 마지막 파라메터부터 컬럼이 생성됨
+class {{model_camel}}(
+    {{model_camel}}Base,
+    ModelBase,
+    table=True,
+):
+    """
+    {{model_snake}} Table
+    """
+
+    pass

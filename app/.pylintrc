@@ -1,0 +1,6 @@
+[MASTER]
+extension-pkg-whitelist = typing, pydantic
+
+
+[MESSAGES CONTROL]
+disable = import-error, missing-module-docstring, missing-class-docstring, missing-function-docstring, invalid-name, protected-access, line-too-long, ungrouped-imports, missing-final-newline, redefined-outer-name, broad-except, raise-missing-from, multiple-imports, singleton-comparison, wrong-import-position, unnecessary-pass, arguments-differ

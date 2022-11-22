@@ -1,0 +1,18 @@
+# core
+from crud.base import CRUDBase
+
+# model
+from models.{{model_snake}} import {{model_camel}} as Model
+from models.{{model_snake}} import {{model_camel}}Create as CreateModel
+from models.{{model_snake}} import {{model_camel}}Update as UpdateModel
+
+
+class CRUD(CRUDBase[Model, CreateModel, UpdateModel]):
+    """
+    {{model_camel}} CRUD
+    """
+
+    pass
+
+
+{{model_snake}} = CRUD(Model)

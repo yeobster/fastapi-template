@@ -1,0 +1,100 @@
+from typing import List
+
+from fastapi import APIRouter, Depends, Path, status
+from fastapi.exceptions import HTTPException
+from sqlmodel import Session
+
+import crud, models, schemas
+from router.backend import dependencies
+
+router = APIRouter()
+
+
+
+@router.post(
+    "",
+    response_model=models.{{model_camel}},
+    response_model_exclude=["password"],
+    response_model_exclude_none=True,
+)
+def create_superuser(
+    {{model_snake}}_in: models.{{model_camel}}Create,
+    db: Session = Depends(dependencies.get_session),
+    current_user: models.Superuser = Depends(
+        dependencies.get_current_superuser
+    ),
+) -> models.{{model_camel}}:
+    """
+    {{model_camel}} 생성
+    """
+
+    {{model_snake}} = crud.{{model_snake}}.create(db, obj_in={{model_snake}}_in)
+
+    return {{model_snake}}
+
+
+@router.get(
+    "",
+    response_model=List[models.{{model_camel}}],
+    response_model_exclude_none=True,
+)
+def get_{{model_snake}}_list(
+    db: Session = Depends(dependencies.get_session),
+    skip: int = 0,
+    limit: int = 100,
+) -> List[models.{{model_camel}}]:
+    """
+    get {{model_camel}} list
+    """
+
+    {{model_snake}}: List[models.{{model_camel}}] = crud.{{model_snake}}.get_multi(
+        db, skip=skip, limit=limit
+    )
+
+
+    return {{model_snake}}
+
+
+
+@router.get(
+    "/{" + "{{model_snake}}_id" + "}",
+    response_model=models.{{model_camel}},
+    response_model_exclude_none=True,
+)
+def get_{{model_snake}}_by_id(
+    db: Session = Depends(dependencies.get_session),
+    {{model_snake}}_id: int = Path(...),
+) -> models.{{model_camel}}:
+    """
+    get {{model_camel}} by id
+    """
+
+    {{model_snake}} = crud.{{model_snake}}.get(db, _id={{model_snake}}_id)
+
+    
+    return {{model_snake}}
+
+
+@router.patch(
+    "/{" + "{{model_snake}}_id" + "}",
+    response_model=models.{{model_camel}},
+    response_model_exclude_none=True,
+)
+def patch_{{model_snake}}_by_id(
+    {{model_snake}}_in: models.{{model_camel}}Update,
+    db: Session = Depends(dependencies.get_session),
+    {{model_snake}}_id: int = Path(...),
+) -> models.{{model_camel}}:
+    """
+    update {{model_camel}} by id
+    """
+
+    {{model_snake}} = crud.{{model_snake}}.get(db, _id={{model_snake}}_id)
+
+    if {{model_snake}} is None:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, detail="{{model_snake}}_id를 찾을 수 없습니다.")
+        
+    {{model_snake}} = crud.{{model_snake}}.update(db, db_obj={{model_snake}}, obj_in={{model_snake}}_in)
+
+    
+    return {{model_snake}}
